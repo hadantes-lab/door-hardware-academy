@@ -5,16 +5,6 @@ one short lesson (illustrated cards) ending in a quiz; passing every lesson in a
 segment unlocks a cumulative segment quiz. Only the "Hanging the Door" (hinges)
 segment exists so far.
 
-## First-time setup (do this once, then delete this section)
-
-This folder was copied over without its git history or CI workflow. To finish:
-
-1. Move `setup/github-workflow-tests.yml` to `.github/workflows/tests.yml` and delete the `setup/` folder.
-2. Create a venv, install `requirements-dev.txt`, run the tests and confirm they pass.
-3. `git init -b main`, commit everything as "Initial slice: Hanging the Door segment".
-4. If the user wants it on GitHub, create the repo (with `gh repo create` if available) and push.
-5. Remove this section from CLAUDE.md and commit.
-
 ## Commands
 
 ```bash
