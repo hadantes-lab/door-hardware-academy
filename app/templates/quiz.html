@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} · Door Hardware Academy{% endblock %}
+{% block content %}
+  <h1>{{ heading }}</h1>
+  <p class="muted">{{ questions|length }} questions · pass with {{ segment.pass_mark|pct }} or better</p>
+  <form method="post" class="quiz-form">
+    {% for q in questions %}
+      <fieldset class="question">
+        <legend><span class="qnum">{{ loop.index }}</span>{{ q.prompt }}</legend>
+        {% for opt in q.options %}
+          <label class="option">
+            <input type="radio" name="{{ q.id }}" value="{{ loop.index0 }}" required>
+            <span>{{ opt }}</span>
+          </label>
+        {% endfor %}
+      </fieldset>
+    {% endfor %}
+    <button class="btn" type="submit">Check answers</button>
+  </form>
+{% endblock %}

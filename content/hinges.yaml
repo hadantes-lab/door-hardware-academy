@@ -1,0 +1,212 @@
+# Segment content for Door Hardware Academy.
+# Each segment has short lessons (cards + a quiz) and a cumulative segment quiz.
+# Write facts in your own words; cite the standard or catalog you checked them against.
+
+id: hinges
+title: Hanging the Door
+subtitle: Hinges, continuous hinges and pivots
+pass_mark: 0.7
+segment_quiz_size: 8
+
+lessons:
+  - id: hinge-anatomy
+    title: Anatomy of a butt hinge
+    minutes: 4
+    cards:
+      - title: The parts
+        image: img/hinge-anatomy.svg
+        alt: A butt hinge with its leaves, knuckles, pin and tips labeled
+        body: >-
+          A butt hinge is two flat **leaves** joined by interlocking **knuckles**.
+          A **pin** runs through the knuckles to form the **barrel**, and **tips**
+          cap each end of the barrel. One leaf screws to the door edge, the other
+          to the frame.
+      - title: Reading the size
+        image: img/hinge-size.svg
+        alt: Hinge height measured along the barrel and width measured across both open leaves
+        body: >-
+          Hinge sizes are written **height × width**. In a 4-1/2" × 4-1/2" hinge,
+          the first number is the length along the barrel; the second is the width
+          across both leaves when opened flat. A 1-3/4" commercial door up to 36"
+          wide typically takes 4-1/2" hinges; wider doors step up to 5".
+      - title: Knuckles and bearings
+        body: >-
+          Most commercial template hinges are **five-knuckle**. Bearings sit
+          between the knuckles to carry the door's weight. **Ball-bearing**
+          hinges are the norm on heavy or frequently used doors and on any door
+          with a closer; **plain-bearing** hinges suit light, low-traffic doors.
+      - title: Standard vs. heavy weight
+        body: >-
+          Leaf thickness (gauge) sets the hinge's weight class. **Standard weight**
+          covers most interior doors; **heavy weight** leaves are thicker for
+          heavy doors and high-frequency openings such as school corridors.
+    quiz:
+      - id: ha-1
+        prompt: In a hinge sized 4-1/2" × 4-1/2", what does the first number measure?
+        options:
+          - The height along the barrel
+          - The width of one leaf
+          - The pin diameter
+          - The door thickness it fits
+        answer: 0
+        explain: Hinge sizes are height first, then the open width across both leaves.
+      - id: ha-2
+        prompt: Which part runs through the knuckles to join the two leaves?
+        options: [The tip, The pin, The swage, The bearing]
+        answer: 1
+        explain: The pin passes through every knuckle; together they form the barrel.
+      - id: ha-3
+        prompt: A heavy classroom door gets a closer. Which hinge bearing should it use?
+        options: [Plain bearing, No bearing, Ball bearing, Any — bearings are cosmetic]
+        answer: 2
+        explain: Doors with closers should hang on ball-bearing (anti-friction) hinges.
+      - id: ha-4
+        prompt: When would you choose heavy-weight hinges over standard weight?
+        options:
+          - On a light closet door
+          - On a heavy, high-traffic door
+          - Only on residential doors
+          - Whenever the finish is stainless steel
+        answer: 1
+        explain: Thicker heavy-weight leaves stand up to heavy doors and frequent use.
+
+  - id: hinge-types
+    title: Mounting types and alternatives
+    minutes: 5
+    cards:
+      - title: Four mounting types
+        image: img/mounting-types.svg
+        alt: Plan views of full mortise, half mortise, half surface and full surface hinges
+        body: >-
+          ANSI/BHMA A156.1 groups butt hinges by how each leaf attaches.
+          **Full mortise**: both leaves are cut into the door edge and frame — the
+          most common commercial hinge. **Half mortise**: mortised into the door
+          edge, surface-mounted on the frame. **Half surface**: mortised into the
+          frame, surface-mounted on the door face. **Full surface**: both leaves
+          on the surface.
+      - title: How many hinges?
+        image: img/hinge-count.svg
+        alt: Three door elevations showing two, three and four hinges by door height
+        body: >-
+          The usual rule is one hinge per 30" of door height, or fraction of it:
+          **2** hinges up to 60", **3** from 60" to 90", and **4** from 90" to
+          120". A standard 7'-0" door therefore gets three.
+      - title: Continuous hinges and pivots
+        body: >-
+          A **continuous hinge** runs the full height of the door, spreading the
+          load along the edge. Geared aluminum and pin-and-barrel stainless types
+          are common on abusive, high-traffic openings. **Pivots** carry the door
+          at the top and bottom instead of the edge — center-hung or offset —
+          and are often paired with floor closers.
+      - title: Special-purpose hinges
+        body: >-
+          **Spring hinges** close the door on their own (ANSI/BHMA A156.17).
+          **Electric hinges** carry wires across the joint to power locks in the
+          door. **Swing-clear hinges** let the door swing fully out of the opening
+          for wheelchair and bed clearance. **NRP** (non-removable pin) hinges stop
+          someone pulling the pins on an out-swinging exterior door.
+    quiz:
+      - id: ht-1
+        prompt: Which mounting type has both leaves cut into the door edge and frame?
+        options: [Full surface, Half surface, Full mortise, Half mortise]
+        answer: 2
+        explain: Full mortise hinges are fully recessed on both sides.
+      - id: ht-2
+        prompt: How many hinges does a standard 84" (7'-0") door need?
+        options: ["2", "3", "4", "5"]
+        answer: 1
+        explain: Doors from 60" to 90" tall take three hinges — one per 30" or fraction.
+      - id: ht-3
+        prompt: An exterior door swings out, leaving the hinge pins exposed outside. What option protects it?
+        options: [Swing clear, NRP (non-removable pin), Spring hinge, Half surface mounting]
+        answer: 1
+        explain: Non-removable pins keep the door from being lifted off its hinges.
+      - id: ht-4
+        prompt: An electrified mortise lock needs power in the door. Which hinge helps?
+        options: [Electric hinge, Spring hinge, Olive knuckle hinge, Plain-bearing hinge]
+        answer: 0
+        explain: Electric hinges carry conductors through the hinge into the door.
+
+  - id: handing-finishes
+    title: Handing and finishes
+    minutes: 4
+    cards:
+      - title: Finding the hand
+        image: img/handing.svg
+        alt: Four plan views showing left hand, right hand, left hand reverse and right hand reverse doors
+        body: >-
+          Stand on the **outside** of the opening — the keyed or secure side.
+          If the hinges are on your left and the door swings away from you, it is
+          **left hand (LH)**. Hinges on the right, swinging away: **right hand
+          (RH)**. If the door swings toward you, add "reverse": **LHR** or **RHR**.
+      - title: Do hinges care about hand?
+        body: >-
+          Most five-knuckle template hinges are **non-handed** — flip them over
+          and they work either way. Two-knuckle hinges and many specialty hinges
+          are **handed**, so the door hand must be on the order.
+      - title: Finish codes
+        image: img/finishes.svg
+        alt: Swatches for BHMA finishes 626, 652, 630, 613, 605 and 600
+        body: >-
+          BHMA numbers name finishes across every brand; older US codes are still
+          common. **626** (US26D) is satin chrome on brass or bronze, **652** is
+          satin chrome on steel, **630** (US32D) is satin stainless steel, **613**
+          (US10B) is oil-rubbed bronze, **605** (US3) is bright brass and **600**
+          (USP) is primed for painting.
+    quiz:
+      - id: hf-1
+        prompt: From the outside, hinges are on your right and the door swings toward you. What is the hand?
+        options: [RH, LH, RHR, LHR]
+        answer: 2
+        explain: Hinges right plus swinging toward you is right hand reverse.
+      - id: hf-2
+        prompt: Which side of the opening do you stand on to determine hand?
+        options: [The hinge side, The outside (keyed or secure side), The pull side always, Whichever side has the closer]
+        answer: 1
+        explain: Handing is read from the outside, the keyed or secure side.
+      - id: hf-3
+        prompt: What finish is BHMA 630?
+        options: [Satin chrome, Oil-rubbed bronze, Satin stainless steel, Bright brass]
+        answer: 2
+        explain: 630 is satin stainless steel, formerly US32D.
+      - id: hf-4
+        prompt: A spec calls for a satin chrome look on steel hinges. Which BHMA code fits?
+        options: ["626", "652", "613", "600"]
+        answer: 1
+        explain: 652 is satin chrome plated on a steel base; 626 is on brass or bronze.
+
+segment_quiz:
+  - id: sq-1
+    prompt: >-
+      A 1-3/4" corridor door, 36" × 96", has a closer and heavy traffic. Which
+      hinge package fits best?
+    options:
+      - 3 plain-bearing standard weight hinges
+      - 4 ball-bearing heavy weight hinges
+      - 2 spring hinges
+      - 3 full surface plain-bearing hinges
+    answer: 1
+    explain: >-
+      96" falls in the 90"–120" band, so four hinges; a closer and heavy traffic
+      call for ball-bearing, heavy-weight leaves.
+  - id: sq-2
+    prompt: >-
+      A hospital room needs the full door width clear for beds. Which hinge
+      addresses that?
+    options: [NRP hinge, Swing-clear hinge, Half mortise hinge, Olive knuckle hinge]
+    answer: 1
+    explain: Swing-clear hinges move the door completely out of the opening.
+  - id: sq-3
+    prompt: >-
+      A school entrance door sees constant abuse and its butt hinges keep
+      sagging. What is a common upgrade?
+    options: [A continuous hinge, Fewer hinges, Plain-bearing hinges, A spring hinge]
+    answer: 0
+    explain: Continuous hinges spread the load along the full height of the door.
+  - id: sq-4
+    prompt: >-
+      You order a two-knuckle hinge for a door. What extra information must the
+      order include?
+    options: [The door hand, The BHMA grade of the lock, The closer size, Nothing extra]
+    answer: 0
+    explain: Two-knuckle hinges are handed, unlike most five-knuckle template hinges.

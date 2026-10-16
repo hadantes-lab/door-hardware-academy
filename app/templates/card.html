@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }} · Door Hardware Academy{% endblock %}
+{% block content %}
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ number }}"
+       aria-label="Card {{ number }} of {{ total }}">
+    <span style="width: {{ (number / (total + 1) * 100)|round }}%"></span>
+  </div>
+  <article class="card">
+    <p class="eyebrow">{{ lesson.title }} · {{ number }} of {{ total }}</p>
+    <h1>{{ card.title }}</h1>
+    {% if card.image %}
+      <figure><img src="{{ url_for('static', filename=card.image) }}" alt="{{ card.alt }}"></figure>
+    {% endif %}
+    <p class="body">{{ card.body|emphasis }}</p>
+  </article>
+  <nav class="card-nav">
+    {% if number > 1 %}
+      <a class="btn ghost" href="{{ url_for('main.lesson_card', segment_id=segment.id, lesson_id=lesson.id, card=number - 1) }}">Back</a>
+    {% else %}
+      <a class="btn ghost" href="{{ url_for('main.home') }}">Home</a>
+    {% endif %}
+    {% if number < total %}
+      <a class="btn" href="{{ url_for('main.lesson_card', segment_id=segment.id, lesson_id=lesson.id, card=number + 1) }}">Next</a>
+    {% else %}
+      <a class="btn" href="{{ url_for('main.lesson_quiz', segment_id=segment.id, lesson_id=lesson.id) }}">Take the quiz</a>
+    {% endif %}
+  </nav>
+{% endblock %}

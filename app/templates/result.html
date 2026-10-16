@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Results · Door Hardware Academy{% endblock %}
+{% block content %}
+  <section class="score {{ 'pass' if result.passed else 'fail' }}">
+    <p class="eyebrow">{{ lesson.title if lesson else "Segment quiz: " ~ segment.title }}</p>
+    <h1>{{ result.correct }} of {{ result.total }} correct · {{ result.score|pct }}</h1>
+    {% if result.passed %}
+      <p>{{ "Lesson complete. The next one is unlocked." if lesson else "Segment complete. Nice work." }}</p>
+    {% else %}
+      <p>You need {{ segment.pass_mark|pct }} to pass. Review the explanations and try again.</p>
+    {% endif %}
+  </section>
+
+  <ol class="review">
+    {% for f in result.feedback %}
+      <li class="{{ 'right' if f.correct else 'wrong' }}">
+        <p class="q">{{ f.question.prompt }}</p>
+        {% if f.correct %}
+          <p><strong>Correct:</strong> {{ f.question.correct_text }}</p>
+        {% else %}
+          <p><strong>Your answer:</strong> {{ f.chosen_text }}</p>
+          <p><strong>Correct answer:</strong> {{ f.question.correct_text }}</p>
+        {% endif %}
+        {% if f.question.explain %}<p class="muted">{{ f.question.explain }}</p>{% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+
+  <nav class="card-nav">
+    <a class="btn ghost" href="{{ retry_url }}">Retake</a>
+    <a class="btn" href="{{ url_for('main.home') }}">Continue</a>
+  </nav>
+{% endblock %}
