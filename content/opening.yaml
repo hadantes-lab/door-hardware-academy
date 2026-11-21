@@ -1,0 +1,381 @@
+# Unit 1: The opening. Lessons 1–5 of the 90-lesson course outline.
+# Facts checked against: SDI 108 and Allegion's door level summary (steel door levels and gauges),
+# SDI 118 (fire door ratings, label locations, temperature-rise doors), NFPA 80 clearances as summarized
+# by iDigHardware, and wood door core descriptions from Beacon/CDL and Masonite Architectural.
+
+id: opening
+order: 1
+title: The Opening
+subtitle: Doors, frames, handing and fire ratings
+pass_mark: 0.7
+segment_quiz_size: 10
+
+lessons:
+  - id: opening-parts
+    title: What makes an opening
+    minutes: 4
+    cards:
+      - title: Think in openings
+        image: img/opening-elevation.svg
+        alt: Elevation of a single door and a pair of doors with the frame head, jambs, active leaf, inactive leaf, hinges, lock and threshold labeled
+        body: >-
+          Hardware people don't talk about doors, they talk about **openings**. An
+          opening is the **door**, the **frame**, the **hardware** and the **wall**
+          it sits in, all working together. Each opening gets a number on the plans,
+          such as 104A, and its own row on the door schedule.
+      - title: Singles and pairs
+        body: >-
+          A **single** has one door leaf. A **pair** has two. On a pair, the
+          **active leaf** carries the lock or exit device and opens first. The
+          **inactive leaf** is held shut by flush bolts and opens only when you need
+          the full width, such as for moving equipment. Hospitals often use an
+          **unequal pair**: one wide leaf for people and a narrow leaf that opens
+          for beds.
+      - title: Push side and pull side
+        body: >-
+          The **pull side** is the side the door swings toward. You can see the
+          hinge knuckles from there. The **push side** is the side the door swings
+          away from, where the frame stop is visible. Much of the hardware you will
+          learn about is placed by side, so this distinction comes up constantly.
+      - title: Sizes in shorthand
+        body: >-
+          Door sizes are written as four digits: **3070** means 3'-0" wide by
+          7'-0" high, and **3080** is 3'-0" × 8'-0". A pair called **6070** is two
+          3'-0" leaves. Commercial doors are almost always **1-3/4"** thick;
+          residential interior doors are usually 1-3/8".
+      - title: Reading a door schedule
+        body: >-
+          A door schedule row lists the **opening number**, **size**, **door type
+          and material**, **frame type**, **fire rating** and **hardware set**.
+          For example: "104A · 3070 × 1-3/4" · flush wood · hollow metal frame ·
+          20 min · set 04". The hardware set number points to the list of
+          hardware for that opening.
+    quiz:
+      - id: op-1
+        prompt: On a pair of doors, which leaf carries the lock or exit device and opens first?
+        options: [The inactive leaf, The active leaf, The astragal leaf, Either leaf]
+        answer: 1
+        explain: The active leaf is the one people use every day; the inactive leaf is bolted shut until needed.
+      - id: op-2
+        prompt: What size is a door listed as 3070?
+        options: ["3'-0\" wide × 7'-0\" high", "30\" wide × 70\" high", "7'-0\" wide × 3'-0\" high", "3'-7\" wide × 7'-0\" high"]
+        answer: 0
+        explain: The first two digits are feet and inches of width, the last two are feet and inches of height.
+      - id: op-3
+        prompt: What is the standard thickness of a commercial door?
+        options: [1-3/8", 1-1/2", 1-3/4", 2-1/4"]
+        answer: 2
+        explain: Commercial doors are 1-3/4" thick; 1-3/8" is typical of residential interior doors.
+      - id: op-4
+        prompt: From which side of a door can you see the hinge knuckles?
+        options: [The push side, The pull side, Both sides equally, Neither side]
+        answer: 1
+        explain: The knuckles sit on the side the door swings toward, the pull side.
+
+  - id: door-types
+    title: Door types and cores
+    minutes: 5
+    cards:
+      - title: Four common door types
+        body: >-
+          **Hollow metal** doors have steel faces over a core and show up at stairs,
+          back-of-house rooms and many fire-rated openings. **Flush wood** doors have
+          veneer or laminate faces and suit offices, patient rooms and hotels.
+          **Aluminum stile-and-rail** doors frame large glass panels at storefront
+          entrances. **FRP** (fiberglass-reinforced plastic) doors resist moisture and
+          chemicals in pools, kitchens and labs.
+      - title: Hollow metal door levels
+        body: >-
+          The Steel Door Institute groups steel doors into four levels by face
+          thickness. **Level 1** (20 gauge) is light commercial, **Level 2** (18
+          gauge) is heavy duty, **Level 3** (16 gauge) is extra heavy duty and
+          **Level 4** (14 gauge) is maximum duty. A **lower gauge number means
+          thicker steel**, so a 16-gauge door is tougher than an 18-gauge door.
+      - title: Inside a wood door
+        image: img/door-cores.svg
+        alt: Cutaway sections of particleboard, structural composite lumber, staved lumber and mineral wood door cores
+        body: >-
+          **Particleboard** cores are the everyday choice and come non-rated or rated
+          20 or 45 minutes. **Structural composite lumber (SCL)** is stronger and more
+          durable. **Staved lumber** uses glued wood blocks and is less common now.
+          **Mineral** cores are used for 45-, 60- and 90-minute wood fire doors, but
+          they hold screws poorly, so the door needs **wood blocking** where hardware
+          mounts.
+      - title: Storefront doors
+        body: >-
+          Aluminum entrance doors are named by stile width: **narrow** (about 2"),
+          **medium** (about 3-1/2") and **wide** (about 5"). Narrow stiles leave
+          little room for hardware, so they need narrow-stile exit devices and short
+          backset locks. Kawneer's 190, 350 and 500 doors are common examples.
+      - title: Choosing the door
+        body: >-
+          Start with the room. A stair door needs a fire rating and durability, so it
+          is usually **hollow metal**. An office or patient room usually gets
+          **flush wood** for its finish. A main entrance with glass uses
+          **aluminum stile-and-rail**, and a pool or wash-down area gets **FRP**.
+    quiz:
+      - id: dt-1
+        prompt: Which steel door face is thicker, 16 gauge or 18 gauge?
+        options: [16 gauge, 18 gauge, They are the same, It depends on the core]
+        answer: 0
+        explain: Gauge numbers run backwards; the lower number is thicker steel.
+      - id: dt-2
+        prompt: Which wood door core is used for 60- and 90-minute fire ratings?
+        options: [Particleboard, Staved lumber, Mineral, Honeycomb]
+        answer: 2
+        explain: Mineral cores provide 45-, 60- and 90-minute ratings in wood doors.
+      - id: dt-3
+        prompt: Why does a mineral-core door need wood blocking?
+        options:
+          - To add a fire rating
+          - Because mineral cores hold screws poorly
+          - To make the door lighter
+          - To reduce sound transmission
+        answer: 1
+        explain: Blocking gives hinge, lock and closer screws something solid to bite into.
+      - id: dt-4
+        prompt: Which door type fits a natatorium (indoor pool) best?
+        options: [Flush wood, Level 1 hollow metal, FRP, Narrow-stile aluminum]
+        answer: 2
+        explain: FRP doors stand up to constant moisture and pool chemicals.
+
+  - id: frames
+    title: Frames
+    minutes: 5
+    cards:
+      - title: Frame anatomy
+        image: img/frame-profile.svg
+        alt: Section through a double-rabbet hollow metal frame jamb showing face, stop, rabbets, soffit, return and throat
+        body: >-
+          A frame has a **head** across the top and two **jambs** at the sides. In
+          section, each jamb has a **face**, a **stop** the door closes against, a
+          **rabbet** where the door sits, a flat **soffit** and **returns** that wrap
+          the wall. The **throat** is the opening between the returns, sized to the
+          wall.
+      - title: Single rabbet, double rabbet, cased opening
+        body: >-
+          Most hollow metal frames are **double rabbet**: a stop in the middle with a
+          rabbet on each side, so the frame works with the door on either face of the
+          wall. A **single rabbet** frame has one rabbet. A **cased opening** has no
+          stop at all and frames a passage without a door.
+      - title: Welded vs. knock-down
+        body: >-
+          **Welded** frames arrive in one piece and are set before the wall is built.
+          They are the most rigid choice, typical for masonry and high-traffic
+          openings. **Knock-down** frames ship in pieces and can slip over finished
+          drywall, which is faster, especially in renovations, but less rigid.
+      - title: Anchoring the frame
+        body: >-
+          Frames are tied to the wall with **anchors** matched to it: masonry anchors
+          set in block or brick, **stud anchors** for metal or wood studs, and
+          **existing wall anchors** that bolt through into finished walls. **Base
+          anchors** fasten the jambs to the floor. A loose frame lets the door sag
+          and the latch miss the strike.
+      - title: Matching frame to door
+        body: >-
+          Frame steel should be at least as heavy as the door calls for: SDI pairs
+          Level 1 doors with 18-gauge frames, Level 2 with 16-gauge and Levels 3 and
+          4 with 14-gauge. Fire-rated openings need a **labeled frame** too, not just
+          a labeled door.
+    quiz:
+      - id: fr-1
+        prompt: What part of the frame does the door close against?
+        options: [The soffit, The return, The stop, The throat]
+        answer: 2
+        explain: The stop is the raised strip the door leaf closes against.
+      - id: fr-2
+        prompt: A renovation adds a door to an existing, finished drywall wall. Which frame is usually easiest?
+        options: [Welded frame, Knock-down drywall frame, Cased opening, Masonry frame]
+        answer: 1
+        explain: Knock-down frames slip over finished drywall without rebuilding the wall.
+      - id: fr-3
+        prompt: Which frame has a stop with a rabbet on each side?
+        options: [Single rabbet, Double rabbet, Cased opening, Borrowed light]
+        answer: 1
+        explain: Double-rabbet frames are the most common hollow metal frame profile.
+      - id: fr-4
+        prompt: What frame gauge does SDI pair with a Level 3 (16-gauge) door?
+        options: [20 gauge, 18 gauge, 16 gauge, 14 gauge]
+        answer: 3
+        explain: Level 3 and Level 4 doors call for 14-gauge frames.
+
+  - id: handing-bevel
+    title: Handing, swing and bevel
+    minutes: 4
+    cards:
+      - title: Find the hand
+        image: img/handing.svg
+        alt: Four plan views showing left hand, right hand, left hand reverse and right hand reverse doors
+        body: >-
+          Stand on the **outside**, the keyed or secure side. Hinges on your left and
+          the door swinging away from you: **left hand (LH)**. Hinges on the right:
+          **right hand (RH)**. If the door swings toward you, add "reverse": **LHR**
+          or **RHR**.
+      - title: Which way should it swing?
+        body: >-
+          Exit doors generally swing **in the direction of egress**, and codes require
+          it once a room serves enough people or a hazardous use. That is why most
+          exterior exit doors swing out. An out-swinging door exposes its hinge pins
+          on the outside, so it gets **non-removable pin (NRP)** hinges.
+      - title: The bevel
+        image: img/door-bevel.svg
+        alt: Plan view of a door edge beveled 1/8 inch in 2 inches clearing the frame as it swings
+        body: >-
+          The lock edge of most doors is cut at a slight angle, **1/8" in 2"**, called
+          the **bevel**. Without it, the leading corner would hit the frame as the
+          door swings. The bevel also tells you which way the latch bolt must face.
+      - title: Reverse bevel
+        body: >-
+          A door that swings toward you from the secure side is **reverse bevel**,
+          written LHR or RHR (some catalogs say LHRB or RHRB). Locks and exit devices
+          must match the bevel, so many are ordered by hand or can be reversed in the
+          field.
+      - title: Handing a pair
+        body: >-
+          A pair is handed by its **active leaf**. If the active leaf on your right
+          swings toward you from the secure side, the pair is **RHR active**. Get the
+          active leaf right, because it carries the lock or exit device.
+    quiz:
+      - id: hb-1
+        prompt: From the secure side, the hinges are on your left and the door swings toward you. What is the hand?
+        options: [LH, RH, LHR, RHR]
+        answer: 2
+        explain: Hinges left plus swinging toward you is left hand reverse.
+      - id: hb-2
+        prompt: How much is a standard door edge beveled?
+        options: [1/16" in 2", 1/8" in 2", 1/4" in 2", 1/2" in 2"]
+        answer: 1
+        explain: The standard bevel is 1/8" in 2", so the lock edge clears the frame.
+      - id: hb-3
+        prompt: An exterior exit door swings out. Which hinge option keeps someone outside from pulling the pins?
+        options: [Swing-clear, Spring hinge, NRP (non-removable pin), Electric hinge]
+        answer: 2
+        explain: Non-removable pins stop the door being lifted off from the outside.
+      - id: hb-4
+        prompt: How is a pair of doors handed?
+        options: [By the inactive leaf, By the active leaf, By the wider leaf, Pairs have no hand]
+        answer: 1
+        explain: The pair takes the hand of its active leaf, the one with the lock or device.
+
+  - id: fire-rated
+    title: Fire-rated openings 101
+    minutes: 6
+    cards:
+      - title: Why fire doors exist
+        body: >-
+          Fire-rated walls split a building into **compartments** that hold back fire
+          and smoke. A door in that wall must hold back fire too, so it is a **fire
+          door assembly**: the door, frame, hardware and any glass are all listed for
+          the rating. **NFPA 80** sets how fire doors are installed, inspected and
+          maintained.
+      - title: Which rating goes where
+        body: >-
+          Ratings are in minutes or hours. Typical pairings: **3-hour** doors in fire
+          walls that separate buildings, **90-minute** doors in 2-hour walls around
+          stairs and shafts, **60-minute** doors in 1-hour stair and shaft
+          enclosures, **45-minute** doors in other 1-hour walls, and **20-minute**
+          doors in 1-hour corridor walls, where smoke is the main concern. Codes set
+          the exact rating; this is the pattern.
+      - title: Reading the labels
+        image: img/fire-labels.svg
+        alt: A door edge and frame rabbet showing fire labels between the top and middle hinges
+        body: >-
+          Every fire door and frame carries a **label** from a testing agency. The
+          door label is usually on the **hinge edge between the top and middle
+          hinges**; the frame label is in the **rabbet**, also between the top and
+          middle hinges. An **"S"** after the rating means the door is also tested for
+          smoke and draft control.
+      - title: The three must-haves
+        body: >-
+          A fire door must be **self-closing** (or close automatically on alarm),
+          **positively latching** so fire pressure can't push it open, and fitted
+          with **listed hardware**. Exit devices on fire doors must be **fire exit
+          hardware**. Wedges, kick-down holders and disabled closers are violations.
+      - title: Gaps, glass and inspection
+        body: >-
+          NFPA 80 limits the gaps: about **1/8"** at the head, jambs and between the
+          leaves of a hollow metal pair, and **3/4"** maximum at the bottom. Glass
+          must be fire-rated and within the listing. Stair doors may need a
+          **temperature-rise** rating (450°F) so the stair stays survivable. Fire
+          doors must be **inspected and tested every year**.
+    quiz:
+      - id: fd-1
+        prompt: Which three things must every swinging fire door have?
+        options:
+          - Self-closing, positive latching, listed hardware
+          - A kick plate, a vision panel, a closer
+          - A deadbolt, a closer, a threshold
+          - Panic hardware, a door stop, gasketing
+        answer: 0
+        explain: Self-closing, positive latching and listed hardware keep the door shut and in place in a fire.
+      - id: fd-2
+        prompt: Where is the label usually found on a fire-rated door?
+        options:
+          - On the push-side face at eye level
+          - On the hinge edge between the top and middle hinges
+          - On the bottom edge
+          - Inside the lock pocket
+        answer: 1
+        explain: Door labels normally sit on the hinge edge between the top and middle hinges.
+      - id: fd-3
+        prompt: What is the maximum gap under a typical swinging fire door?
+        options: [1/4", 1/2", 3/4", 1"]
+        answer: 2
+        explain: NFPA 80 allows up to 3/4" at the bottom for most swinging fire doors.
+      - id: fd-4
+        prompt: What does an "S" after a fire door's rating mean?
+        options:
+          - It is steel
+          - It is rated for smoke and draft control
+          - It is for stairwells only
+          - It has a sprinkler exemption
+        answer: 1
+        explain: The S label means the assembly was also tested for smoke and draft leakage.
+
+segment_quiz:
+  - id: u1-1
+    prompt: An office corridor has 1-hour walls. What fire rating does a typical door in that corridor wall need?
+    options: [20 minutes, 45 minutes, 90 minutes, 3 hours]
+    answer: 0
+    explain: Corridor walls usually take 20-minute doors, where smoke control is the main concern.
+  - id: u1-2
+    prompt: A stair in a six-story building has 2-hour walls. What door rating do you expect?
+    options: [20 minutes, 45 minutes, 90 minutes, No rating]
+    answer: 2
+    explain: Doors in 2-hour stair and shaft walls are typically 90-minute (1-1/2 hour) doors.
+  - id: u1-3
+    prompt: >-
+      A fire door at a back-of-house corridor is propped open with a wooden wedge
+      and has a 1" gap at the floor. How many problems is that?
+    options: [None, One, Two, Three]
+    answer: 2
+    explain: The wedge stops it self-closing, and a 1" gap exceeds the 3/4" bottom limit.
+  - id: u1-4
+    prompt: >-
+      Standing outside a building, the hinges of an exit door are on your right and
+      it swings toward you. What is the hand, and what hinge option does it need?
+    options: [RH with spring hinges, RHR with NRP hinges, LHR with NRP hinges, RH with swing-clear hinges]
+    answer: 1
+    explain: Hinges right plus swinging toward you is RHR, and exposed pins call for NRP hinges.
+  - id: u1-5
+    prompt: >-
+      A busy school stair door gets slammed by carts all day. Which door and frame
+      combination fits best?
+    options:
+      - Level 1 (20 ga) door in an 18 ga frame
+      - Level 3 (16 ga) door in a 14 ga frame
+      - Particleboard wood door in a knock-down frame
+      - Narrow-stile aluminum door
+    answer: 1
+    explain: Heavy abuse calls for an extra-heavy-duty door in a 14-gauge welded frame.
+  - id: u1-6
+    prompt: >-
+      A 45-minute wood door gets a new closer, but the screws keep pulling out of
+      the core. What was missed?
+    options:
+      - The door needed a smoke label
+      - The mineral core needed wood blocking at the closer
+      - The frame was the wrong gauge
+      - The bevel was cut the wrong way
+    answer: 1
+    explain: Mineral cores hold screws poorly; hardware locations need blocking.

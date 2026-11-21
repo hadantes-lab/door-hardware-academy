@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{ lesson.title }} · Door Hardware Academy{% endblock %}
-{% block content %}
+{% block body_class %}focus{% endblock %}
+{% block topbar %}
+  <a class="close" href="{{ url_for('main.home') }}" aria-label="Leave lesson and go home">✕</a>
   <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ number }}"
        aria-label="Card {{ number }} of {{ total }}">
     <span style="width: {{ (number / (total + 1) * 100)|round }}%"></span>
   </div>
+  <span class="step">{{ number }}/{{ total }}</span>
+{% endblock %}
+{% block content %}
   <article class="card">
-    <p class="eyebrow">{{ lesson.title }} · {{ number }} of {{ total }}</p>
+    <p class="eyebrow">Unit {{ unit.number }} · {{ lesson.title }}</p>
     <h1>{{ card.title }}</h1>
     {% if card.image %}
-      <figure><img src="{{ url_for('static', filename=card.image) }}" alt="{{ card.alt }}"></figure>
+      <figure>
+        <a href="{{ url_for('static', filename=card.image) }}" target="_blank" rel="noopener" class="zoom">
+          <img src="{{ url_for('static', filename=card.image) }}" alt="{{ card.alt }}">
+        </a>
+        <figcaption>Tap the diagram to open it full size.</figcaption>
+      </figure>
     {% endif %}
     <p class="body">{{ card.body|emphasis }}</p>
   </article>
-  <nav class="card-nav">
+  <nav class="action-bar">
     {% if number > 1 %}
       <a class="btn ghost" href="{{ url_for('main.lesson_card', segment_id=segment.id, lesson_id=lesson.id, card=number - 1) }}">Back</a>
     {% else %}

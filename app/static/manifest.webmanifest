@@ -1,0 +1,12 @@
+{
+  "name": "Door Hardware Academy",
+  "short_name": "Door Academy",
+  "description": "Daily bite-sized lessons on architectural door hardware.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#c2410c",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

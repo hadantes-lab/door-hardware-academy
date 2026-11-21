@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 0 594 340" role="img" aria-labelledby="t">
+  <title id="t">Single door and pair of doors with parts labeled</title>
+  <style>
+    .frame{fill:#9aa5b1;stroke:#3b4752;stroke-width:2}
+    .leaf{fill:#f3ead9;stroke:#6b5b45;stroke-width:2}
+    .hinge{fill:#3b4752}
+    .lever{fill:none;stroke:#3b4752;stroke-width:4;stroke-linecap:round}
+    .bolt{fill:#c2410c}
+    .floor{stroke:#52606d;stroke-width:2}
+    .ln{stroke:#c2410c;stroke-width:1.5;fill:none}
+    .dot{fill:#c2410c}
+    .lbl{font:600 13px system-ui,sans-serif;fill:#1f2933}
+    .cap{font:700 15px system-ui,sans-serif;fill:#1f2933}
+  </style>
+  <line class="floor" x1="-30" y1="290" x2="550" y2="290"/>
+
+  <!-- Single -->
+  <path class="frame" d="M60 40 H210 V290 H198 V52 H72 V290 H60 Z"/>
+  <rect class="leaf" x="73" y="53" width="124" height="236"/>
+  <rect class="hinge" x="72" y="72" width="6" height="22"/>
+  <rect class="hinge" x="72" y="160" width="6" height="22"/>
+  <rect class="hinge" x="72" y="250" width="6" height="22"/>
+  <circle cx="183" cy="175" r="5" fill="#3b4752"/><path class="lever" d="M183 175 H163"/>
+  <text class="cap" x="105" y="320">Single</text>
+
+  <!-- Pair -->
+  <path class="frame" d="M300 40 H540 V290 H528 V52 H312 V290 H300 Z"/>
+  <rect class="leaf" x="313" y="53" width="107" height="236"/>
+  <rect class="leaf" x="420" y="53" width="107" height="236"/>
+  <rect class="hinge" x="312" y="72" width="6" height="22"/>
+  <rect class="hinge" x="312" y="160" width="6" height="22"/>
+  <rect class="hinge" x="312" y="250" width="6" height="22"/>
+  <rect class="hinge" x="522" y="72" width="6" height="22"/>
+  <rect class="hinge" x="522" y="160" width="6" height="22"/>
+  <rect class="hinge" x="522" y="250" width="6" height="22"/>
+  <circle cx="408" cy="175" r="5" fill="#3b4752"/><path class="lever" d="M408 175 H388"/>
+  <rect class="bolt" x="426" y="56" width="5" height="16"/>
+  <rect class="bolt" x="426" y="270" width="5" height="16"/>
+  <text class="cap" x="406" y="320">Pair</text>
+
+  <!-- Labels: single -->
+  <circle class="dot" cx="135" cy="46" r="3.5"/><path class="ln" d="M135 46 V18 H160"/><text class="lbl" x="164" y="22">Frame head</text>
+  <circle class="dot" cx="66" cy="120" r="3.5"/><path class="ln" d="M66 120 H48"/><text class="lbl" x="-32" y="125">Hinge jamb</text>
+  <circle class="dot" cx="75" cy="171" r="3.5"/><path class="ln" d="M75 171 H10 V200"/><text class="lbl" x="-20" y="216">Hinges</text>
+  <circle class="dot" cx="171" cy="175" r="3.5"/><path class="ln" d="M171 175 L150 225"/><text class="lbl" x="104" y="242">Lock</text>
+  <circle class="dot" cx="204" cy="120" r="3.5"/><path class="ln" d="M204 120 H240 V100"/><text class="lbl" x="214" y="94">Strike jamb</text>
+
+  <!-- Labels: pair -->
+  <circle class="dot" cx="365" cy="110" r="3.5"/><path class="ln" d="M365 110 V100"/><text class="lbl" x="328" y="94">Active leaf</text>
+  <circle class="dot" cx="480" cy="110" r="3.5"/><path class="ln" d="M480 110 V100"/><text class="lbl" x="440" y="94">Inactive leaf</text>
+  <circle class="dot" cx="431" cy="278" r="3.5"/><path class="ln" d="M431 278 L470 250"/><text class="lbl" x="452" y="244">Flush bolts</text>
+</svg>

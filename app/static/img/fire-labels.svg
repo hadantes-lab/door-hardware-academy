@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" role="img" aria-labelledby="t">
+  <title id="t">Where fire labels go on the door edge and frame rabbet</title>
+  <style>
+    .edge{fill:#f3ead9;stroke:#6b5b45;stroke-width:2}
+    .jamb{fill:#cfd6dd;stroke:#3b4752;stroke-width:2}
+    .rabbet{fill:#b6bfc8;stroke:#3b4752;stroke-width:1.5}
+    .hinge{fill:#3b4752}
+    .tag{fill:#c2410c;stroke:#8a2e08;stroke-width:1}
+    .card{fill:#fff;stroke:#3b4752;stroke-width:2}
+    .ln{stroke:#c2410c;stroke-width:1.5;fill:none}
+    .dot{fill:#c2410c}
+    .lbl{font:700 14px system-ui,sans-serif;fill:#1f2933}
+    .sub{font:12px system-ui,sans-serif;fill:#52606d}
+    .mono{font:700 12px ui-monospace,Menlo,Consolas,monospace;fill:#1f2933}
+  </style>
+  <!-- Door hinge edge -->
+  <rect class="edge" x="60" y="20" width="44" height="280"/>
+  <rect class="hinge" x="62" y="40" width="40" height="10"/>
+  <rect class="hinge" x="62" y="150" width="40" height="10"/>
+  <rect class="hinge" x="62" y="262" width="40" height="10"/>
+  <rect class="tag" x="70" y="88" width="24" height="30" rx="2"/>
+  <text class="lbl" x="30" y="325">Door hinge edge</text>
+
+  <!-- Frame hinge jamb with rabbet -->
+  <rect class="jamb" x="230" y="20" width="60" height="280"/>
+  <rect class="rabbet" x="248" y="20" width="24" height="280"/>
+  <rect class="hinge" x="248" y="40" width="24" height="10"/>
+  <rect class="hinge" x="248" y="150" width="24" height="10"/>
+  <rect class="hinge" x="248" y="262" width="24" height="10"/>
+  <rect class="tag" x="251" y="86" width="18" height="34" rx="2"/>
+  <text class="lbl" x="214" y="325">Frame rabbet</text>
+
+  <!-- Brace showing the zone between top and middle hinges -->
+  <path class="ln" d="M120 50 H128 V150 H120"/><text class="sub" x="134" y="96">Between top</text><text class="sub" x="134" y="111">and middle</text><text class="sub" x="134" y="126">hinges</text>
+
+  <!-- Example label, enlarged -->
+  <circle class="dot" cx="269" cy="103" r="3.5"/><path class="ln" d="M269 103 H320"/>
+  <rect class="card" x="320" y="50" width="220" height="150" rx="6"/>
+  <rect x="332" y="62" width="44" height="30" rx="4" fill="#e4e7eb" stroke="#7b8794"/>
+  <text class="sub" x="336" y="81">mark</text>
+  <text class="mono" x="388" y="74">FIRE DOOR FRAME</text>
+  <text class="mono" x="388" y="90">LISTED</text>
+  <text class="mono" x="332" y="122">RATING: 1-1/2 HR</text>
+  <text class="mono" x="332" y="142">450°F MAX TEMP RISE</text>
+  <text class="mono" x="332" y="162">SERIAL: 0012345</text>
+  <text class="mono" x="332" y="182">MFR: (frame maker)</text>
+  <text class="sub" x="320" y="222">Example label. Real labels carry the</text>
+  <text class="sub" x="320" y="238">testing agency's own mark.</text>
+  <text class="sub" x="320" y="270">An "S" after the rating on a door</text>
+  <text class="sub" x="320" y="286">label means smoke and draft control.</text>
+</svg>

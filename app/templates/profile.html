@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}{{ g.user.display_name }} · Door Hardware Academy{% endblock %}
+{% block content %}
+  <section class="panel profile-head">
+    <span class="avatar big" aria-hidden="true">{{ g.user.initial }}</span>
+    <div>
+      <h1>{{ g.user.display_name }}</h1>
+      <p class="muted">@{{ g.user.username }}{% if g.user.role %} · {{ g.user.role }}{% endif %} · member since {{ g.user.member_since }}</p>
+    </div>
+  </section>
+
+  {% if errors %}
+    <div class="form-errors" role="alert">{% for e in errors %}<p>{{ e }}</p>{% endfor %}</div>
+  {% endif %}
+
+  <section class="stats" aria-label="Your progress">
+    <div class="stat"><span class="num">{{ stats.streak }}</span><span class="label">day streak</span></div>
+    <div class="stat"><span class="num">{{ stats.lessons_done }}<small>/{{ stats.lessons_total }}</small></span><span class="label">lessons done</span></div>
+    <div class="stat"><span class="num">{{ stats.units_done }}<small>/{{ stats.units_total }}</small></span><span class="label">units passed</span></div>
+    <div class="stat"><span class="num">{{ stats.average_score|pct if stats.average_score is not none else "–" }}</span><span class="label">average score</span></div>
+  </section>
+
+  <section class="panel">
+    <h2>Units</h2>
+    <ul class="unit-list">
+      {% for sp in course %}
+        <li>
+          <div class="unit-row">
+            <span><strong>Unit {{ sp.number }}</strong> · {{ sp.segment.title }}</span>
+            <span class="unit-status">
+              {% if sp.quiz_passed %}Passed{% if sp.best_quiz_score is not none %} · best {{ sp.best_quiz_score|pct }}{% endif %}
+              {% elif not sp.unlocked %}Locked
+              {% else %}{{ sp.done_count }}/{{ sp.lessons|length }} lessons{% endif %}
+            </span>
+          </div>
+          <div class="meter" role="progressbar" aria-label="Unit {{ sp.number }} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ (sp.fraction * 100)|round|int }}"><span style="width: {{ (sp.fraction * 100)|round }}%"></span></div>
+        </li>
+      {% endfor %}
+    </ul>
+    <p class="muted small-note">{{ stats.quizzes_taken }} quiz{{ "" if stats.quizzes_taken == 1 else "zes" }} taken across {{ stats.days_practiced }} day{{ "" if stats.days_practiced == 1 else "s" }}.</p>
+  </section>
+
+  <details class="panel" {{ "open" if errors }}>
+    <summary>Edit profile</summary>
+    <form method="post" class="form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="action" value="profile">
+      <label for="display_name">Your name</label>
+      <input id="display_name" name="display_name" value="{{ g.user.display_name }}" maxlength="40" required>
+      <label for="role">Your work <span class="optional">(optional)</span></label>
+      <select id="role" name="role">
+        <option value="">Choose one</option>
+        {% for r in roles %}<option value="{{ r }}" {{ "selected" if g.user.role == r }}>{{ r }}</option>{% endfor %}
+      </select>
+      <button class="btn" type="submit">Save profile</button>
+    </form>
+  </details>
+
+  <details class="panel">
+    <summary>Change password</summary>
+    <form method="post" class="form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="action" value="password">
+      <label for="current_password">Current password</label>
+      <input id="current_password" name="current_password" type="password" autocomplete="current-password" required>
+      <label for="new_password">New password</label>
+      <input id="new_password" name="new_password" type="password" minlength="8" autocomplete="new-password" required>
+      <button class="btn" type="submit">Change password</button>
+    </form>
+  </details>
+
+  <form method="post" action="{{ url_for('auth.logout') }}" class="signout">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button class="btn ghost" type="submit">Sign out</button>
+  </form>
+{% endblock %}

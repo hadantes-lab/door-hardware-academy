@@ -1,41 +1,59 @@
 {% extends "base.html" %}
 {% block topbar_extra %}
   <span class="streak" title="Days in a row with a passed quiz">
-    <span aria-hidden="true">▲</span> {{ streak }}-day streak
+    <span aria-hidden="true">▲</span> {{ streak }}<span class="streak-word">-day streak</span><span class="sr"> day streak</span>
   </span>
 {% endblock %}
 {% block content %}
   {% if today %}
+    {% set kind, unit, lesson = today %}
     <section class="today">
-      <p class="eyebrow">Today's lesson</p>
-      {% set kind, seg, lesson = today %}
+      <p class="eyebrow">Today's lesson · Unit {{ unit.number }}</p>
       {% if kind == "lesson" %}
         <h1>{{ lesson.title }}</h1>
-        <p class="muted">{{ seg.title }} · about {{ lesson.minutes }} minutes · ends with a short quiz</p>
-        <a class="btn" href="{{ url_for('main.lesson_card', segment_id=seg.id, lesson_id=lesson.id) }}">Start lesson</a>
+        <p class="muted">{{ unit.segment.title }} · about {{ lesson.minutes }} minutes · ends with a short quiz</p>
+        <a class="btn block-sm" href="{{ url_for('main.lesson_card', segment_id=unit.segment.id, lesson_id=lesson.id) }}">Start lesson</a>
       {% else %}
-        <h1>Segment quiz: {{ seg.title }}</h1>
-        <p class="muted">You've finished every lesson. Put it all together.</p>
-        <a class="btn" href="{{ url_for('main.segment_quiz', segment_id=seg.id) }}">Take the segment quiz</a>
+        <h1>Unit {{ unit.number }} quiz: {{ unit.segment.title }}</h1>
+        <p class="muted">You've finished every lesson in this unit. Pass the quiz to unlock the next one.</p>
+        <a class="btn block-sm" href="{{ url_for('main.segment_quiz', segment_id=unit.segment.id) }}">Take the unit quiz</a>
       {% endif %}
     </section>
   {% else %}
     <section class="today">
       <p class="eyebrow">All caught up</p>
-      <h1>You've completed every segment available.</h1>
-      <p class="muted">Retake any quiz to keep your streak going while new segments are written.</p>
+      <h1>You've completed every unit available.</h1>
+      <p class="muted">Retake any quiz to keep your streak going while new units are written.</p>
     </section>
   {% endif %}
 
-  {% for sp in segments %}
-    <section class="segment">
+  {% if not g.user %}
+    <section class="save-nudge">
+      <div>
+        <strong>{{ "Save your progress" if guest_progress else "Track your progress" }}</strong>
+        <p>Create a free profile to keep your lessons, scores and streak on any device.</p>
+      </div>
+      <div class="save-actions">
+        <a class="btn small" href="{{ url_for('auth.signup') }}">Create profile</a>
+        <a class="link" href="{{ url_for('auth.login') }}">Sign in</a>
+      </div>
+    </section>
+  {% endif %}
+
+  {% for sp in course %}
+    <section class="segment {{ 'is-locked' if not sp.unlocked }}">
       <div class="segment-head">
         <div>
+          <p class="eyebrow">Unit {{ sp.number }}{% if not sp.unlocked %} · locked{% endif %}</p>
           <h2>{{ sp.segment.title }}</h2>
           <p class="muted">{{ sp.segment.subtitle }}</p>
         </div>
         <p class="count">{{ sp.done_count }} / {{ sp.lessons|length }} lessons</p>
       </div>
+      <div class="meter" role="progressbar" aria-label="Unit {{ sp.number }} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ (sp.fraction * 100)|round|int }}"><span style="width: {{ (sp.fraction * 100)|round }}%"></span></div>
+      {% if not sp.unlocked %}
+        <p class="muted small-note">Pass the Unit {{ sp.number - 1 }} quiz to open this unit.</p>
+      {% endif %}
       <ol class="path">
         {% for ls in sp.lessons %}
           <li class="node {{ ls.state }}">
@@ -43,17 +61,17 @@
             {% if ls.state == "locked" %}
               <span class="node-title">{{ ls.lesson.title }} <span class="sr">(locked)</span></span>
             {% else %}
-              <a class="node-title" href="{{ url_for('main.lesson_card', segment_id=sp.segment.id, lesson_id=ls.lesson.id) }}">{{ ls.lesson.title }}</a>
+              <a class="node-title" href="{{ url_for('main.lesson_card', segment_id=sp.segment.id, lesson_id=ls.lesson.id) }}">{{ ls.lesson.title }}{% if ls.state == "done" %}<span class="sr"> (done)</span>{% endif %}</a>
             {% endif %}
           </li>
         {% endfor %}
         <li class="node quiz {% if sp.quiz_passed %}done{% elif sp.quiz_unlocked %}next{% else %}locked{% endif %}">
           <span class="dot" aria-hidden="true">★</span>
           {% if sp.quiz_unlocked %}
-            <a class="node-title" href="{{ url_for('main.segment_quiz', segment_id=sp.segment.id) }}">Segment quiz</a>
-            {% if sp.best_quiz_score is not none %}<span class="muted small">best {{ sp.best_quiz_score|pct }}</span>{% endif %}
+            <a class="node-title" href="{{ url_for('main.segment_quiz', segment_id=sp.segment.id) }}">Unit quiz</a>
+            {% if sp.best_quiz_score is not none %}<span class="best">best {{ sp.best_quiz_score|pct }}</span>{% endif %}
           {% else %}
-            <span class="node-title">Segment quiz <span class="sr">(locked)</span></span>
+            <span class="node-title">Unit quiz <span class="sr">(locked)</span></span>
           {% endif %}
         </li>
       </ol>

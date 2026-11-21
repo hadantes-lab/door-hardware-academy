@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{ heading }} · Door Hardware Academy{% endblock %}
+{% block body_class %}focus{% endblock %}
+{% block topbar %}
+  <a class="close" href="{{ url_for('main.home') }}" aria-label="Leave quiz and go home">✕</a>
+  <span class="topbar-title">{{ "Quick check" if lesson else "Unit " ~ unit.number ~ " quiz" }}</span>
+  <span class="step">{{ questions|length }} Qs</span>
+{% endblock %}
 {% block content %}
   <h1>{{ heading }}</h1>
   <p class="muted">{{ questions|length }} questions · pass with {{ segment.pass_mark|pct }} or better</p>
-  <form method="post" class="quiz-form">
+  <form method="post" class="quiz-form" id="quiz-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     {% for q in questions %}
       <fieldset class="question">
-        <legend><span class="qnum">{{ loop.index }}</span>{{ q.prompt }}</legend>
+        <legend><span class="qnum">{{ loop.index }}</span><span>{{ q.prompt }}</span></legend>
         {% for opt in q.options %}
           <label class="option">
-            <input type="radio" name="{{ q.id }}" value="{{ loop.index0 }}" required>
+            <input type="radio" id="{{ q.id }}-{{ loop.index0 }}" name="{{ q.id }}" value="{{ loop.index0 }}" required>
             <span>{{ opt }}</span>
           </label>
         {% endfor %}
       </fieldset>
     {% endfor %}
-    <button class="btn" type="submit">Check answers</button>
+    <div class="action-bar">
+      <button class="btn wide" type="submit">Check answers</button>
+    </div>
   </form>
 {% endblock %}

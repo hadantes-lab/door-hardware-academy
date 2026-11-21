@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Create your profile · Door Hardware Academy{% endblock %}
+{% block content %}
+  <section class="panel auth">
+    <p class="eyebrow">Free profile</p>
+    <h1>Create your profile</h1>
+    <p class="muted">
+      {% if guest_progress %}Lessons you've already finished on this device will be saved to your new profile.
+      {% else %}Save your lessons, quiz scores and streak, and pick up on any device.{% endif %}
+    </p>
+    {% if errors %}
+      <div class="form-errors" role="alert">
+        {% for e in errors %}<p>{{ e }}</p>{% endfor %}
+      </div>
+    {% endif %}
+    <form method="post" class="form" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label for="display_name">Your name</label>
+      <input id="display_name" name="display_name" value="{{ form.display_name }}" maxlength="40" autocomplete="name" required>
+
+      <label for="username">Username</label>
+      <input id="username" name="username" value="{{ form.username }}" maxlength="30" autocomplete="username"
+             autocapitalize="none" spellcheck="false" required>
+      <p class="hint">3–30 letters, numbers, dots, dashes or underscores. You'll sign in with this.</p>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+      <p class="hint">At least 8 characters.</p>
+
+      <label for="role">Your work <span class="optional">(optional)</span></label>
+      <select id="role" name="role">
+        <option value="">Choose one</option>
+        {% for r in roles %}<option value="{{ r }}" {{ "selected" if form.role == r }}>{{ r }}</option>{% endfor %}
+      </select>
+
+      <button class="btn wide" type="submit">Create profile</button>
+    </form>
+    <p class="switch">Already have a profile? <a href="{{ url_for('auth.login', next=request.args.get('next')) }}">Sign in</a></p>
+  </section>
+{% endblock %}
