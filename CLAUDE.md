@@ -34,6 +34,19 @@ Windows: activate the venv with `.venv\Scripts\activate`.
 - `tests/`: unittest-style tests (pytest also runs them). `tests/test_app.py` has helpers
   (`post`, `pass_lesson`, `pass_unit`) that send the CSRF token.
 
+## GitHub Pages version
+
+`docs/index.html` is a generated, self-contained static copy of the app for GitHub Pages
+(served from `main` → `/docs`). `scripts/build_site.py` fills `site/template.html` with
+the validated YAML content, the SVGs as data URIs (provenance metadata stripped) and
+`app/static/style.css`. Progress and the profile live in the browser's localStorage
+(`door-hardware-academy-v1`); the profile page exports/imports a transfer code.
+Unlock rules in the template's `course()` must match `progress.course_progress`.
+
+**After any change to `content/`, `app/static/img/`, `app/static/style.css` or
+`site/template.html`, run `python scripts/build_site.py` and commit `docs/`.**
+`tests/test_site.py` fails when the page is stale. Never edit `docs/index.html` by hand.
+
 ## How identity works
 
 Every visitor gets a random `learner_id` in the signed session cookie (`session["uid"]`).

@@ -26,6 +26,33 @@ Home ──► Today's lesson ──► cards 1…n ──► lesson quiz (pass 
 - **Profiles** save progress. Anyone can start as a guest; creating a profile (name, username, password, optional role) keeps everything done so far. Signing in on another device brings progress along, and lessons finished as a guest are added to the profile on sign-in. The profile page shows streak, lessons and units completed, average score and per-unit progress, and lets learners edit their name and role or change their password.
 - **Phone first.** Large touch targets, lesson and quiz buttons pinned to the bottom of the screen, safe-area padding for notched phones, dark mode, and a web app manifest so the site can be added to a home screen.
 
+## Web page (GitHub Pages)
+
+`docs/index.html` is a single self-contained page with the same units, diagrams and
+quizzes that runs entirely in the browser, so GitHub Pages can host it for free.
+Learners create a profile (name and optional role) that is saved in their browser,
+and the profile page gives a **transfer code** to carry progress to a phone or
+another computer. The Flask app below is the version to deploy when you want real
+accounts that sync on their own.
+
+Turn it on once:
+
+1. Merge your changes into `main`.
+2. On GitHub, open **Settings → Pages**. Under **Build and deployment**, choose
+   **Deploy from a branch**, branch **main**, folder **/docs**, and save.
+3. After a minute the page is live at `https://hadantes-lab.github.io/door-hardware-academy/`.
+
+GitHub Pages on a free account only works for public repositories. If the repo is
+private, either make it public (**Settings → General → Danger Zone → Change visibility**)
+or use a paid plan.
+
+After changing lessons, diagrams or `app/static/style.css`, rebuild the page and
+commit it (a test fails if you forget):
+
+```bash
+python scripts/build_site.py
+```
+
 ## Run it locally
 
 Requires Python 3.11+.
@@ -74,7 +101,10 @@ app/
 content/
   opening.yaml     Unit 1: The Opening
   hinges.yaml      Unit 2: Hanging the Door
-tests/             unit and route tests
+site/template.html page template for the GitHub Pages version
+scripts/build_site.py  builds docs/index.html from content, diagrams and CSS
+docs/index.html    the GitHub Pages page (generated; don't edit by hand)
+tests/             unit, route and site tests
 ```
 
 ## Adding a unit
