@@ -18,6 +18,19 @@ class ShippedContentTests(unittest.TestCase):
     def setUpClass(cls):
         cls.segments = load_segments(CONTENT)
 
+    def test_units_are_in_course_order(self):
+        self.assertEqual(list(self.segments)[:2], ["opening", "hinges"])
+
+    def test_unit_1_matches_the_outline(self):
+        seg = self.segments["opening"]
+        self.assertEqual([l.title for l in seg.lessons], [
+            "What makes an opening", "Door types and cores", "Frames",
+            "Handing, swing and bevel", "Fire-rated openings 101",
+        ])
+        for lesson in seg.lessons:
+            self.assertGreaterEqual(len(lesson.cards), 4, lesson.id)
+            self.assertEqual(len(lesson.quiz), 4, lesson.id)
+
     def test_hinges_segment_loads(self):
         seg = self.segments["hinges"]
         self.assertEqual(len(seg.lessons), 3)

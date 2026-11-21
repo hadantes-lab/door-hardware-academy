@@ -3,6 +3,7 @@
 # Write facts in your own words; cite the standard or catalog you checked them against.
 
 id: hinges
+order: 2
 title: Hanging the Door
 subtitle: Hinges, continuous hinges and pivots
 pass_mark: 0.7

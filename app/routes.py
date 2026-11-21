@@ -1,7 +1,5 @@
-"""Web routes: home, lesson cards, lesson quiz and the cumulative segment quiz."""
+"""Web routes: home, lesson cards, lesson quiz and the cumulative unit (segment) quiz."""
 from __future__ import annotations
-
-import uuid
 
 from flask import (Blueprint, abort, current_app, flash, redirect, render_template,
                    request, session, url_for)
@@ -13,92 +11,98 @@ from .quiz import build_segment_quiz, grade, parse_answers
 bp = Blueprint("main", __name__)
 
 
-@bp.before_app_request
-def ensure_learner() -> None:
-    # One anonymous learner per browser. Swap for real accounts later.
-    if "uid" not in session:
-        session["uid"] = uuid.uuid4().hex
-        session.permanent = True
-
-
 def _segments() -> dict[str, Segment]:
     return current_app.config["SEGMENTS"]
 
 
-def _segment_or_404(segment_id: str) -> Segment:
-    segment = _segments().get(segment_id)
-    if segment is None:
+def _course() -> list[progress.SegmentProgress]:
+    return progress.course_progress(session["uid"], _segments().values())
+
+
+def _unit_or_404(segment_id: str) -> progress.SegmentProgress:
+    unit = next((sp for sp in _course() if sp.segment.id == segment_id), None)
+    if unit is None:
         abort(404)
-    return segment
+    return unit
 
 
-def _lesson_or_redirect(segment: Segment, lesson_id: str):
+def _locked_unit_redirect(unit: progress.SegmentProgress):
+    flash(f"Pass the Unit {unit.number - 1} quiz to unlock Unit {unit.number}.")
+    return redirect(url_for("main.home"))
+
+
+def _lesson_or_redirect(unit: progress.SegmentProgress, lesson_id: str):
     """Return (lesson, None) if the learner may open it, else (None, redirect)."""
-    lesson = segment.lesson(lesson_id)
-    if lesson is None:
+    state = next((s for s in unit.lessons if s.lesson.id == lesson_id), None)
+    if state is None:
         abort(404)
-    states = progress.lesson_states(segment, progress.passed_lessons(session["uid"], segment.id))
-    state = next(s.state for s in states if s.lesson.id == lesson_id)
-    if state == "locked":
+    if not unit.unlocked:
+        return None, _locked_unit_redirect(unit)
+    if state.state == "locked":
         flash("Finish the earlier lessons first to unlock that one.")
         return None, redirect(url_for("main.home"))
-    return lesson, None
+    return state.lesson, None
 
 
 @bp.route("/")
 def home():
     uid = session["uid"]
-    segments = [progress.segment_progress(uid, s) for s in _segments().values()]
+    course = _course()
     # "Today's lesson": the first unfinished step anywhere in the course.
     today = None
-    for sp in segments:
+    for sp in course:
         if sp.next_lesson:
-            today = ("lesson", sp.segment, sp.next_lesson)
+            today = ("lesson", sp, sp.next_lesson)
             break
         if sp.quiz_unlocked and not sp.quiz_passed:
-            today = ("quiz", sp.segment, None)
+            today = ("quiz", sp, None)
             break
-    return render_template("home.html", segments=segments, today=today,
-                           streak=progress.streak(uid))
+    return render_template("home.html", course=course, today=today,
+                           streak=progress.streak(uid),
+                           guest_progress=progress.has_progress(uid))
 
 
 @bp.route("/s/<segment_id>/l/<lesson_id>/")
 @bp.route("/s/<segment_id>/l/<lesson_id>/<int:card>")
 def lesson_card(segment_id: str, lesson_id: str, card: int = 1):
-    segment = _segment_or_404(segment_id)
-    lesson, redirect_to = _lesson_or_redirect(segment, lesson_id)
+    unit = _unit_or_404(segment_id)
+    lesson, redirect_to = _lesson_or_redirect(unit, lesson_id)
     if redirect_to:
         return redirect_to
     if not 1 <= card <= len(lesson.cards):
         abort(404)
-    return render_template("card.html", segment=segment, lesson=lesson,
+    return render_template("card.html", unit=unit, segment=unit.segment, lesson=lesson,
                            card=lesson.cards[card - 1], number=card, total=len(lesson.cards))
 
 
 @bp.route("/s/<segment_id>/l/<lesson_id>/quiz", methods=["GET", "POST"])
 def lesson_quiz(segment_id: str, lesson_id: str):
-    segment = _segment_or_404(segment_id)
-    lesson, redirect_to = _lesson_or_redirect(segment, lesson_id)
+    unit = _unit_or_404(segment_id)
+    segment = unit.segment
+    lesson, redirect_to = _lesson_or_redirect(unit, lesson_id)
     if redirect_to:
         return redirect_to
 
     if request.method == "POST":
         result = grade(lesson.quiz, parse_answers(request.form, lesson.quiz), segment.pass_mark)
         progress.record_attempt(session["uid"], segment.id, lesson.id, result.score, result.passed)
-        return render_template("result.html", segment=segment, lesson=lesson, result=result,
+        return render_template("result.html", unit=unit, segment=segment, lesson=lesson,
+                               result=result,
                                retry_url=url_for("main.lesson_quiz", segment_id=segment.id,
                                                  lesson_id=lesson.id))
-    return render_template("quiz.html", segment=segment, lesson=lesson, questions=lesson.quiz,
-                           heading=f"Quick check: {lesson.title}")
+    return render_template("quiz.html", unit=unit, segment=segment, lesson=lesson,
+                           questions=lesson.quiz, heading=f"Quick check: {lesson.title}")
 
 
 @bp.route("/s/<segment_id>/quiz", methods=["GET", "POST"])
 def segment_quiz(segment_id: str):
-    segment = _segment_or_404(segment_id)
+    unit = _unit_or_404(segment_id)
+    segment = unit.segment
     uid = session["uid"]
-    sp = progress.segment_progress(uid, segment)
-    if not sp.quiz_unlocked:
-        flash("Pass every lesson in this segment to unlock the segment quiz.")
+    if not unit.unlocked:
+        return _locked_unit_redirect(unit)
+    if not unit.quiz_unlocked:
+        flash("Pass every lesson in this unit to unlock the unit quiz.")
         return redirect(url_for("main.home"))
 
     key = f"segment_quiz:{segment.id}"
@@ -113,10 +117,12 @@ def segment_quiz(segment_id: str):
         result = grade(questions, parse_answers(request.form, questions), segment.pass_mark)
         progress.record_attempt(uid, segment.id, None, result.score, result.passed)
         session.pop(key, None)
-        return render_template("result.html", segment=segment, lesson=None, result=result,
+        return render_template("result.html", unit=unit, segment=segment, lesson=None,
+                               result=result,
                                retry_url=url_for("main.segment_quiz", segment_id=segment.id))
 
     questions = build_segment_quiz(segment)
     session[key] = [q.id for q in questions]
-    return render_template("quiz.html", segment=segment, lesson=None, questions=questions,
-                           heading=f"Segment quiz: {segment.title}")
+    return render_template("quiz.html", unit=unit, segment=segment, lesson=None,
+                           questions=questions,
+                           heading=f"Unit {unit.number} quiz: {segment.title}")

@@ -2,12 +2,15 @@
 {% block title %}Results · Door Hardware Academy{% endblock %}
 {% block content %}
   <section class="score {{ 'pass' if result.passed else 'fail' }}">
-    <p class="eyebrow">{{ lesson.title if lesson else "Segment quiz: " ~ segment.title }}</p>
+    <p class="eyebrow">{{ lesson.title if lesson else "Unit " ~ unit.number ~ " quiz: " ~ segment.title }}</p>
     <h1>{{ result.correct }} of {{ result.total }} correct · {{ result.score|pct }}</h1>
     {% if result.passed %}
-      <p>{{ "Lesson complete. The next one is unlocked." if lesson else "Segment complete. Nice work." }}</p>
+      <p>{{ "Lesson complete. The next one is unlocked." if lesson else "Unit complete. The next unit is unlocked." }}</p>
     {% else %}
       <p>You need {{ segment.pass_mark|pct }} to pass. Review the explanations and try again.</p>
+    {% endif %}
+    {% if not g.user %}
+      <p class="muted save-line"><a href="{{ url_for('auth.signup') }}">Create a free profile</a> to keep this result.</p>
     {% endif %}
   </section>
 
@@ -26,7 +29,7 @@
     {% endfor %}
   </ol>
 
-  <nav class="card-nav">
+  <nav class="action-bar">
     <a class="btn ghost" href="{{ retry_url }}">Retake</a>
     <a class="btn" href="{{ url_for('main.home') }}">Continue</a>
   </nav>

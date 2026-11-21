@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" role="img" aria-labelledby="t">
+  <title id="t">Plan section through a double-rabbet hollow metal frame jamb</title>
+  <style>
+    .steel{fill:none;stroke:#3b4752;stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+    .gyp{fill:#eceff1;stroke:#7b8794;stroke-width:1.5}
+    .stud{fill:#cfd6dd;stroke:#7b8794;stroke-width:1.5}
+    .door{fill:#f3ead9;stroke:#6b5b45;stroke-width:2}
+    .ln{stroke:#c2410c;stroke-width:1.5;fill:none}
+    .dot{fill:#c2410c}
+    .lbl{font:600 13px system-ui,sans-serif;fill:#1f2933}
+    .sub{font:12px system-ui,sans-serif;fill:#52606d}
+    .dim{stroke:#0b6e4f;stroke-width:1.5;fill:none}
+  </style>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#0b6e4f"/></marker></defs>
+
+  <!-- Wall (stud + drywall), running to the right -->
+  <rect class="gyp" x="322" y="135" width="200" height="14"/>
+  <rect class="gyp" x="322" y="221" width="200" height="14"/>
+  <rect class="stud" x="330" y="149" width="192" height="72"/>
+  <text class="sub" x="420" y="190">Stud wall</text>
+
+  <!-- Frame profile: face, rabbet, stop, rabbet, face, returns -->
+  <path class="steel" d="M320 135 V120 H230 V150 H205 V205 H230 V250 H320 V235"/>
+
+  <!-- Door sitting in the upper rabbet, closed against the stop -->
+  <rect class="door" x="50" y="123" width="177" height="25"/>
+  <text class="sub" x="90" y="141">Door (1-3/4")</text>
+
+  <!-- Throat dimension -->
+  <path class="dim" d="M340 135 V235" marker-start="url(#a)" marker-end="url(#a)"/>
+
+  <!-- Labels -->
+  <circle class="dot" cx="275" cy="120" r="3.5"/><path class="ln" d="M275 120 V70"/><text class="lbl" x="258" y="62">Face</text>
+  <circle class="dot" cx="320" cy="128" r="3.5"/><path class="ln" d="M320 128 L370 80"/><text class="lbl" x="362" y="72">Return</text>
+  <circle class="dot" cx="230" cy="135" r="3.5"/><path class="ln" d="M230 135 L180 70"/><text class="lbl" x="140" y="62">Rabbet</text>
+  <circle class="dot" cx="205" cy="178" r="3.5"/><path class="ln" d="M205 178 H120"/><text class="lbl" x="84" y="183">Stop</text>
+  <circle class="dot" cx="230" cy="228" r="3.5"/><path class="ln" d="M230 228 L170 275"/><text class="lbl" x="128" y="290">Soffit</text>
+  <circle class="dot" cx="340" cy="185" r="3.5"/><path class="ln" d="M340 185 L380 275"/><text class="lbl" x="370" y="290">Throat (wall depth)</text>
+  <text class="sub" x="20" y="322">Seen from above. The opening is to the left; the second rabbet below the stop is empty.</text>
+</svg>

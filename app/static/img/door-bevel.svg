@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-labelledby="t">
+  <title id="t">Beveled lock edge clearing the frame as the door swings</title>
+  <style>
+    .frame{fill:#9aa5b1;stroke:#3b4752;stroke-width:2}
+    .door{fill:#f3ead9;stroke:#6b5b45;stroke-width:2}
+    .ghost{fill:#f3ead9;fill-opacity:.45;stroke:#6b5b45;stroke-width:1.5;stroke-dasharray:4 3}
+    .arc{fill:none;stroke:#c2410c;stroke-width:1.5;stroke-dasharray:5 4}
+    .hinge{fill:#c2410c}
+    .ln{stroke:#c2410c;stroke-width:1.5;fill:none}
+    .dot{fill:#c2410c}
+    .lbl{font:600 13px system-ui,sans-serif;fill:#1f2933}
+    .sub{font:12px system-ui,sans-serif;fill:#52606d}
+  </style>
+  <!-- Frame jambs (plan) -->
+  <path class="frame" d="M30 200 H60 V230 H30 Z"/>
+  <path class="frame" d="M420 170 H440 V200 H470 V230 H420 Z"/>
+  <!-- Closed door with exaggerated bevel on the lock edge -->
+  <path class="door" d="M60 200 H412 L420 230 H60 Z"/>
+  <!-- Door partly open -->
+  <path class="ghost" d="M60 200 L340 64 L355 87 L60 230 Z"/>
+  <circle class="hinge" cx="60" cy="230" r="5"/>
+  <!-- Path of the leading corner -->
+  <path class="arc" d="M420 230 A360 360 0 0 0 360 32"/>
+
+  <circle class="dot" cx="60" cy="230" r="3.5"/><path class="ln" d="M60 230 V262"/><text class="lbl" x="40" y="278">Hinge</text>
+  <circle class="dot" cx="416" cy="215" r="3.5"/><path class="ln" d="M416 215 L470 262"/><text class="lbl" x="420" y="278">Bevel 1/8" in 2"</text>
+  <circle class="dot" cx="445" cy="185" r="3.5"/><path class="ln" d="M445 185 L500 150"/><text class="lbl" x="482" y="142">Frame</text>
+  <text class="sub" x="258" y="170">Path of the</text><text class="sub" x="258" y="186">leading corner</text>
+  <text class="sub" x="20" y="296">Seen from above. Bevel exaggerated so it is visible.</text>
+</svg>

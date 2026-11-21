@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-labelledby="t">
+  <title id="t">Four wood door core types in cutaway</title>
+  <defs>
+    <pattern id="pb" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#e3cfa8"/>
+      <circle cx="2" cy="3" r="1.2" fill="#a88a5c"/><circle cx="7" cy="7" r="1" fill="#8f7347"/><circle cx="6" cy="2" r=".8" fill="#b89a6a"/><circle cx="3" cy="8" r=".9" fill="#9c7f52"/>
+    </pattern>
+    <pattern id="scl" width="40" height="8" patternUnits="userSpaceOnUse">
+      <rect width="40" height="8" fill="#e8d2a6"/>
+      <path d="M0 2 H24 M10 5 H40 M0 7 H14" stroke="#a7804c" stroke-width="1.4"/>
+    </pattern>
+    <pattern id="stave" width="36" height="46" patternUnits="userSpaceOnUse">
+      <rect width="36" height="46" fill="#dcbf8c"/>
+      <rect x="0" y="0" width="36" height="23" fill="#e6cc9c" stroke="#8f6d3e" stroke-width="1.2"/>
+      <rect x="-18" y="23" width="36" height="23" fill="#d8b985" stroke="#8f6d3e" stroke-width="1.2"/>
+      <rect x="18" y="23" width="36" height="23" fill="#e2c595" stroke="#8f6d3e" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="min" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#c9ced3"/>
+      <circle cx="3" cy="4" r="1" fill="#8a939b"/><circle cx="9" cy="9" r="1.2" fill="#9aa3ab"/><circle cx="8" cy="3" r=".7" fill="#7d868e"/>
+    </pattern>
+  </defs>
+  <style>
+    .veneer{fill:#b8875a;stroke:#6b4a2b;stroke-width:1.5}
+    .edge{fill:#c99a6a;stroke:#6b4a2b;stroke-width:1.5}
+    .block{fill:#d9b27a;stroke:#6b4a2b;stroke-width:1.5}
+    .core{stroke:#6b4a2b;stroke-width:1.5}
+    .lbl{font:700 14px system-ui,sans-serif;fill:#1f2933}
+    .sub{font:12px system-ui,sans-serif;fill:#52606d}
+    .ln{stroke:#c2410c;stroke-width:1.5;fill:none}
+    .dot{fill:#c2410c}
+  </style>
+  <!-- Each panel: a door corner with the face veneer peeled back to show the core -->
+  <g transform="translate(20,20)">
+    <rect class="edge" x="0" y="0" width="14" height="190"/>
+    <rect class="core" x="14" y="0" width="100" height="190" fill="url(#pb)"/>
+    <path class="veneer" d="M14 0 H114 V70 L14 150 Z"/>
+    <text class="lbl" x="0" y="216">Particleboard</text>
+    <text class="sub" x="0" y="234">Up to 45 min rated</text>
+  </g>
+  <g transform="translate(155,20)">
+    <rect class="edge" x="0" y="0" width="14" height="190"/>
+    <rect class="core" x="14" y="0" width="100" height="190" fill="url(#scl)"/>
+    <path class="veneer" d="M14 0 H114 V70 L14 150 Z"/>
+    <text class="lbl" x="0" y="216">SCL</text>
+    <text class="sub" x="0" y="234">Stronger, durable</text>
+  </g>
+  <g transform="translate(290,20)">
+    <rect class="edge" x="0" y="0" width="14" height="190"/>
+    <rect class="core" x="14" y="0" width="100" height="190" fill="url(#stave)"/>
+    <path class="veneer" d="M14 0 H114 V70 L14 150 Z"/>
+    <text class="lbl" x="0" y="216">Staved lumber</text>
+    <text class="sub" x="0" y="234">Glued wood blocks</text>
+  </g>
+  <g transform="translate(425,20)">
+    <rect class="edge" x="0" y="0" width="14" height="190"/>
+    <rect class="core" x="14" y="0" width="100" height="190" fill="url(#min)"/>
+    <rect class="block" x="14" y="108" width="100" height="40"/><text x="34" y="133" style="font:600 12px system-ui,sans-serif;fill:#1f2933">Blocking</text>
+    <path class="veneer" d="M14 0 H114 V50 L14 90 Z"/>
+    <text class="lbl" x="0" y="216">Mineral</text>
+    <text class="sub" x="0" y="234">45, 60, 90 min</text>
+  </g>
+    <text class="sub" x="20" y="272">Face veneer cut away to show each core. Patterns are illustrative.</text><text class="sub" x="20" y="290">Mineral cores need wood blocking wherever hardware is screwed on.</text>
+</svg>
